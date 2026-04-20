@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1280">
+  <title>מדיניות פרטיות – משכנתי</title>
+  <meta name="description" content="מדיניות הפרטיות של מערכת משכנתי." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    :root {
+      --ink:     #09192b;
+      --navy:    #0f2540;
+      --deep:    #1e4a7a;
+      --primary: #4c91b4;
+      --sky:     #76b7d4;
+      --mist:    #eaf5fb;
+      --bg:      #f2f8fc;
+      --text:    #0f2030;
+      --muted:   #5a7a8e;
+      --line:    rgba(76,145,180,0.16);
+      --gold:    #c9a84c;
+      --gold-glow: rgba(201,168,76,0.28);
+      --font-body: 'Calibri', 'Segoe UI', Arial, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      min-width: 320px;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Header */
+    .site-header {
+      position: sticky; top: 0; z-index: 30;
+      background: rgba(9,25,43,0.92);
+      backdrop-filter: blur(22px) saturate(200%);
+      border-bottom: 1px solid rgba(76,145,180,0.2);
+    }
+    .site-header-inner {
+      max-width: 900px; margin: 0 auto; padding: 0 32px;
+      height: 68px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand-title { font-size: .95rem; font-weight: 700; color: #fff; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: rgba(255,255,255,.65); font-size: .88rem; font-weight: 600;
+      transition: color .2s;
+    }
+    .back-link:hover { color: #fff; text-decoration: none; }
+
+    /* Content */
+    .content {
+      max-width: 760px; margin: 60px auto 80px; padding: 0 32px;
+    }
+    .page-title {
+      font-size: 2.4rem; font-weight: 900; color: var(--ink);
+      letter-spacing: -.03em; margin-bottom: 8px;
+    }
+    .page-date { color: var(--muted); font-size: .9rem; margin-bottom: 48px; }
+
+    .policy-section { margin-bottom: 36px; }
+    .policy-section h2 {
+      font-size: 1.2rem; font-weight: 700; color: var(--navy);
+      margin-bottom: 12px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    .policy-section p { color: var(--muted); margin-bottom: 10px; }
+    .policy-section ul { padding-right: 20px; color: var(--muted); }
+    .policy-section ul li { margin-bottom: 6px; }
+
+    .highlight-box {
+      background: var(--mist); border: 1px solid rgba(76,145,180,.25);
+      border-radius: 14px; padding: 20px 24px; margin-bottom: 36px;
+      color: var(--navy); font-size: .97rem;
+    }
+    .highlight-box strong { color: var(--deep); }
+
+    footer {
+      text-align: center; padding: 0 0 40px;
+      color: var(--muted); font-size: .85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <span class="brand-title">משכנתי</span>
+      <a href="/" class="back-link">← חזרה לדף הבית</a>
+    </div>
+  </header>
+
+  <main class="content">
+    <h1 class="page-title">מדיניות פרטיות</h1>
+    <p class="page-date">עדכון אחרון: אפריל 2026</p>
+
+    <div class="highlight-box">
+      <strong>בקצרה:</strong> משכנתי היא תוכנת Desktop שפועלת לחלוטין על המחשב שלך. כל הנתונים שאתה מזין נשמרים אצלך בלבד — לא נאספים, לא מועברים ולא נשמרים בשרתים חיצוניים.
+    </div>
+
+    <div class="policy-section">
+      <h2>1. מי אנחנו</h2>
+      <p>משכנתי היא מערכת ניהול משכנתאות לבעלי מקצוע, המפותחת ומתוחזקת על ידי שחר גולומב.</p>
+      <p>ליצירת קשר: <a href="https://wa.me/972548037092">WhatsApp</a></p>
+    </div>
+
+    <div class="policy-section">
+      <h2>2. איזה מידע נאסף</h2>
+      <p>התוכנה עצמה אינה אוספת מידע אישי כלשהו. כל הנתונים שמזינים — פרטי לקוחות, סימולציות, מסמכים — נשמרים אך ורק על המחשב של המשתמש.</p>
+      <p>אתר זה אינו משתמש בעוגיות (cookies) ואינו אוסף נתוני גלישה.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>3. בדיקת עדכונים</h2>
+      <p>התוכנה מבצעת בדיקה חד-פעמית בעת הפעלה לצורך הודעה על גרסה חדשה. הבדיקה שולחת בקשה לכתובת GitHub בלבד ואינה כוללת שום מידע אישי.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>4. שיתוף מידע עם צד שלישי</h2>
+      <p>אנחנו לא מוכרים, משתפים או מעבירים שום מידע אישי לצדדים שלישיים.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>5. אבטחה</h2>
+      <p>מכיוון שהנתונים נשמרים מקומית על המחשב שלך, אבטחתם היא באחריות המשתמש. אנו ממליצים על גיבוי תקופתי של קובץ מסד הנתונים.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>6. שינויים במדיניות</h2>
+      <p>אם מדיניות הפרטיות תתעדכן, הגרסה העדכנית תפורסם בעמוד זה עם תאריך העדכון.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>7. יצירת קשר</h2>
+      <p>לכל שאלה בנוגע למדיניות הפרטיות ניתן לפנות ישירות:</p>
+      <ul>
+        <li>WhatsApp: <a href="https://wa.me/972548037092">972548037092</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>© 2026 משכנתי — שחר גולומב | כל הזכויות שמורות</footer>
+
+</body>
+</html>
