@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1280">
+  <title>משכנתי – מערכת ניהול משכנתאות לבעלי מקצוע</title>
+  <meta name="description" content="משכנתי – מערכת ניהול משכנתאות לבעלי מקצוע. סימולציות, ניהול לקוחות, דוחות מקצועיים ותמיכה ישירה." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <style>
+    /* ============================================================
+       MASHKANTI V6 – DESKTOP EDITORIAL PREMIUM
+       ============================================================ */
+
+    :root {
+      --ink:         #09192b;
+      --navy:        #0f2540;
+      --ocean:       #17385f;
+      --deep:        #1e4a7a;
+      --primary:     #4c91b4;
+      --sky:         #76b7d4;
+      --mist:        #eaf5fb;
+      --cloud:       #daedf7;
+      --bg:          #f2f8fc;
+
+      --text:        #0f2030;
+      --text-sub:    #2d4a60;
+      --muted:       #5a7a8e;
+      --ghost:       #8fabbf;
+
+      --gold:        #c9a84c;
+      --gold-soft:   #fdf6e3;
+      --gold-glow:   rgba(201,168,76,0.28);
+
+      --line:        rgba(76,145,180,0.16);
+      --line-strong: rgba(76,145,180,0.28);
+
+      --shadow-xs: 0 2px 8px rgba(9,25,43,0.07);
+      --shadow-sm: 0 6px 24px rgba(9,25,43,0.10);
+      --shadow-md: 0 14px 42px rgba(9,25,43,0.14);
+      --shadow-lg: 0 24px 62px rgba(9,25,43,0.18);
+      --shadow-xl: 0 36px 90px rgba(9,25,43,0.22);
+
+      --r:    18px;
+      --r-lg: 26px;
+      --r-xl: 34px;
+
+      --container: 1200px;
+      --font-display: 'Calibri', 'Segoe UI', Arial, sans-serif;
+      --font-body:    'Calibri', 'Segoe UI', Arial, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* Desktop-only: force minimum width, no mobile reflow */
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+      min-width: 1280px;
+      overflow-x: auto;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    img  { max-width: 100%; display: block; }
+    a    { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+
+    .container {
+      width: min(var(--container), calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    /* ── Scroll-reveal (only for sections below the fold) ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: .1s; }
+    .reveal-d2 { transition-delay: .2s; }
+    .reveal-d3 { transition-delay: .3s; }
+
+    /* ══════════════════════════════════════
+       HEADER
+    ══════════════════════════════════════ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(9,25,43,0.86);
+      backdrop-filter: blur(22px) saturate(200%);
+      border-bottom: 1px solid rgba(76,145,180,0.2);
+    }
+    .site-header-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-logo { width: 130px; height: auto; object-fit: contain; filter: brightness(1.1); }
+    .brand-text  { display: flex; flex-direction: column; gap: 1px; }
+    .brand-title    { font-size: .88rem; font-weight: 700; color: rgba(255,255,255,.9); }
+    .brand-subtitle { font-size: .76rem; color: rgba(118,183,212,.75); }
+
+    .nav { display: flex; align-items: center; gap: 28px; font-size: .93rem; font-weight: 500; }
+    .nav a { color: rgba(255,255,255,.6); transition: color .2s; }
+    .nav a:hover { color: #fff; }
+
+    .nav-cta {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 10px 22px; border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold) 0%, #a8872f 100%);
+      color: #fff; font-weight: 700; font-size: .88rem;
+      box-shadow: 0 4px 18px var(--gold-glow);
+      transition: all .22s ease; white-space: nowrap;
+    }
+    .nav-cta:hover { box-shadow: 0 8px 30px var(--gold-glow); transform: translateY(-1px); filter: brightness(1.08); }
+
+    /* ══════════════════════════════════════
+       HERO — always visible, no reveal
+    ══════════════════════════════════════ */
+    .hero {
+      position: relative;
+      background:
+        radial-gradient(ellipse 80% 60% at 85% 30%, rgba(76,145,180,.18) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 50% at 5% 70%, rgba(118,183,212,.10) 0%, transparent 50%),
+        linear-gradient(160deg, #0a1c30 0%, #0f2540 45%, #132d4a 75%, #0d2238 100%);
+      padding: 80px 0 80px;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '∑';
+      position: absolute; top: -60px; left: -20px;
+      font-family: var(--font-display); font-size: 560px; line-height: 1;
+      color: rgba(76,145,180,.04); pointer-events: none; user-select: none;
+    }
+
+    .hero-grid {
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: 540px 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    /* hero copy */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 7px 16px; border-radius: 999px;
+      background: rgba(76,145,180,.15); border: 1px solid rgba(76,145,180,.3);
+      color: var(--sky); font-size: .84rem; font-weight: 700;
+      margin-bottom: 24px; width: fit-content; letter-spacing: .03em;
+    }
+    .eyebrow-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--sky);
+      box-shadow: 0 0 0 4px rgba(118,183,212,0.25);
+      animation: pulse-dot 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100%{ box-shadow: 0 0 0 4px rgba(118,183,212,0.25); }
+      50%{ box-shadow: 0 0 0 8px rgba(118,183,212,0.10); }
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 4rem;
+      line-height: 1.0;
+      letter-spacing: -.025em;
+      color: #fff;
+      margin: 0 0 4px;
+    }
+    h1 em { font-style: normal; color: var(--sky); }
+
+    .hero-lead {
+      margin: 20px 0 0; max-width: 52ch;
+      font-size: 1.06rem; line-height: 1.8;
+      color: rgba(255,255,255,.6); font-weight: 400;
+    }
+    .hero-lead strong { color: rgba(255,255,255,.85); font-weight: 600; }
+
+    .hero-stats {
+      display: flex; gap: 28px; margin: 32px 0 0; align-items: stretch;
+    }
+    .hero-stat { display: flex; flex-direction: column; gap: 4px; }
+    .hero-stat-num {
+      font-family: var(--font-display); font-size: 2.1rem; font-weight: 900;
+      line-height: 1; color: #fff;
+    }
+    .hero-stat-label { font-size: .78rem; color: rgba(255,255,255,.48); font-weight: 500; }
+    .hero-stat-sep { width: 1px; background: rgba(255,255,255,.13); align-self: stretch; margin-block: 4px; }
+
+    .hero-points {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 28px 0 0;
+    }
+    .hero-point {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 15px 16px;
+      background: rgba(255,255,255,.055); border: 1px solid rgba(76,145,180,.2); border-radius: 16px;
+      transition: background .2s, border-color .2s;
+    }
+    .hero-point:hover { background: rgba(76,145,180,.1); border-color: rgba(76,145,180,.35); }
+    .hero-point-icon {
+      width: 38px; height: 38px; border-radius: 11px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(76,145,180,.2); color: var(--sky); flex: 0 0 auto;
+    }
+    .hero-point-title { font-size: .9rem; font-weight: 700; margin-bottom: 3px; color: #fff; }
+    .hero-point-text  { font-size: .82rem; color: rgba(255,255,255,.5); line-height: 1.5; }
+
+    .hero-actions { display: flex; gap: 12px; margin-top: 30px; }
+    .hero-meta    { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+    .hero-chip {
+      padding: 6px 13px; border-radius: 999px;
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13);
+      color: rgba(255,255,255,.52); font-size: .8rem; font-weight: 600;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 52px; padding: 0 28px; border-radius: 999px;
+      border: 1px solid transparent; font-weight: 700; font-size: .97rem;
+      cursor: pointer; transition: all .22s ease; position: relative; overflow: hidden;
+      white-space: nowrap;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold) 0%, #a8872f 100%);
+      color: #fff; box-shadow: 0 5px 22px var(--gold-glow);
+    }
+    .btn-gold::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,255,255,.14),transparent 55%); pointer-events:none; }
+    .btn-gold:hover { box-shadow: 0 10px 36px var(--gold-glow); transform: translateY(-2px); filter: brightness(1.08); }
+
+    .btn-ghost-white {
+      background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.22); color: rgba(255,255,255,.85);
+    }
+    .btn-ghost-white:hover { background: rgba(255,255,255,.15); border-color: rgba(255,255,255,.38); transform: translateY(-1px); }
+
+    .btn-blue {
+      background: linear-gradient(135deg, #4c91b4 0%, #3a7a9d 100%);
+      color: #fff; box-shadow: 0 5px 20px rgba(76,145,180,.40);
+    }
+    .btn-blue:hover { box-shadow: 0 10px 34px rgba(76,145,180,.52); transform: translateY(-2px); }
+
+    .btn-outline {
+      background: rgba(255,255,255,.9); border-color: rgba(76,145,180,.28); color: var(--text-sub);
+    }
+    .btn-outline:hover { background: #fff; border-color: var(--primary); box-shadow: var(--shadow-sm); transform: translateY(-1px); color: var(--ocean); }
+
+    /* ══════════════════════════════════════
+       HERO PREVIEW — client management
+    ══════════════════════════════════════ */
+    .preview-card {
+      padding: 14px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(76,145,180,.24);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-xl), 0 0 0 1px rgba(255,255,255,.07) inset;
+      backdrop-filter: blur(12px);
+      position: relative;
+    }
+    .preview-card::before {
+      content: ''; position: absolute; inset: -32px;
+      border-radius: 48px;
+      background: radial-gradient(ellipse, rgba(76,145,180,.13), transparent 68%);
+      pointer-events: none; z-index: -1;
+    }
+    .preview-window {
+      overflow: hidden; border-radius: 12px; background: #fff;
+      border: 1px solid rgba(118,183,212,.18);
+    }
+    .preview-topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 17px; border-bottom: 1px solid rgba(118,183,212,.14);
+      background: linear-gradient(180deg, #f8fcff, #f3f9ff);
+    }
+    .preview-topbar-left { display: flex; align-items: center; gap: 12px; }
+    .preview-dots { display: flex; gap: 6px; }
+    .preview-dots span { width: 8px; height: 8px; border-radius: 50%; }
+    .preview-dots span:nth-child(1) { background: #ff6b6b; }
+    .preview-dots span:nth-child(2) { background: #ffd93d; }
+    .preview-dots span:nth-child(3) { background: #6bcb77; }
+    .preview-label { font-size: .83rem; font-weight: 700; color: var(--ocean); }
+    .preview-status { font-size: .75rem; color: var(--primary); background: var(--mist); border-radius: 999px; padding: 5px 11px; font-weight: 700; border: 1px solid rgba(76,145,180,.18); }
+
+    .preview-body { padding: 18px; background: linear-gradient(180deg,#fff 0%,#f5fbff 100%); display: grid; gap: 13px; }
+
+    .preview-hero-note { display: grid; grid-template-columns: 1fr auto; align-items: start; gap: 12px; }
+    .preview-hero-note strong { display:block; font-size:.98rem; margin-bottom:4px; color:var(--ocean); line-height:1.25; }
+    .preview-hero-note span   { display:block; color:var(--muted); font-size:.8rem; line-height:1.55; max-width:44ch; }
+    .preview-view-badge { padding:6px 11px; border-radius:999px; background:rgba(76,145,180,.1); color:var(--primary); font-size:.71rem; font-weight:800; white-space:nowrap; border:1px solid rgba(76,145,180,.18); }
+
+    .preview-summary-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .preview-summary {
+      padding:15px 15px 12px; border-radius:13px;
+      background:linear-gradient(160deg,#fff,#f4faff); border:1px solid rgba(118,183,212,.2);
+      box-shadow:var(--shadow-xs); position:relative; overflow:hidden; display:flex; flex-direction:column;
+    }
+    .preview-summary::before { content:''; position:absolute; inset:0 auto 0 0; width:3px; border-radius:3px 0 0 3px; background:var(--accent-color,var(--sky)); }
+    .summary-number { font-family:var(--font-display); font-size:1.75rem; font-weight:900; color:var(--accent-color,var(--primary)); margin-bottom:5px; line-height:1; }
+    .summary-label  { font-size:.82rem; font-weight:700; color:var(--ocean); }
+    .preview-summary small { display:block; margin-top:5px; color:var(--muted); font-size:.72rem; }
+    .preview-summary.is-active    { --accent-color:#4684f1; }
+    .preview-summary.is-potential { --accent-color:#7d4ce0; }
+    .preview-summary.is-waiting   { --accent-color:#e0911f; }
+
+    .preview-toolbar { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:11px 13px; background:rgba(236,246,252,.9); border:1px solid rgba(118,183,212,.18); border-radius:13px; }
+    .preview-toolbar-meta strong { font-size:.82rem; color:var(--ocean); display:block; }
+    .preview-toolbar-meta span   { color:var(--muted); font-size:.72rem; display:block; }
+    .filter-chips { display:flex; gap:6px; }
+    .filter-chip { padding:5px 11px; border-radius:999px; border:1px solid rgba(118,183,212,.22); background:#fff; color:var(--text-sub); font-size:.72rem; font-weight:700; white-space:nowrap; cursor:pointer; transition:all .18s; }
+    .filter-chip.active { background:linear-gradient(135deg,#4c91b4,#3a7a9d); border-color:transparent; color:#fff; box-shadow:0 3px 10px rgba(76,145,180,.35); }
+
+    .dashboard-shell { overflow:hidden; border-radius:14px; border:1px solid rgba(118,183,212,.2); background:#fff; box-shadow:var(--shadow-xs); }
+    .dashboard-table { width:100%; border-collapse:collapse; }
+    .dashboard-table thead th { padding:11px 12px; background:linear-gradient(135deg,var(--navy),var(--deep)); color:rgba(255,255,255,.92); font-size:.73rem; text-align:right; font-weight:700; white-space:nowrap; }
+    .dashboard-table tbody td { padding:10px 12px; border-bottom:1px solid rgba(118,183,212,.12); font-size:.78rem; vertical-align:middle; }
+    .dashboard-table tbody tr:last-child td { border-bottom:0; }
+    .dashboard-table tbody tr:hover { background:rgba(118,183,212,.04); }
+    .ticket-code { color:var(--primary); font-weight:700; white-space:nowrap; }
+    .client-meta strong { display:block; font-size:.82rem; margin-bottom:2px; color:var(--ocean); }
+    .client-meta small  { color:var(--muted); font-size:.7rem; }
+    .status-badge { display:inline-flex; align-items:center; justify-content:center; padding:4px 10px; border-radius:999px; font-size:.68rem; font-weight:800; white-space:nowrap; }
+    .status-badge.is-open   { background:#eaf2ff; color:#4c78d8; }
+    .status-badge.is-soft   { background:#efe7ff; color:#8153dd; }
+    .status-badge.is-review { background:#fff3d8; color:#b27007; }
+    .progress-stack { display:flex; gap:3px; margin-bottom:4px; }
+    .progress-seg   { flex:1 1 0; height:7px; border-radius:999px; background:rgba(118,183,212,.18); }
+    .progress-seg.done  { background:linear-gradient(90deg,#2eaa57,#3ac66a); }
+    .progress-seg.alert { background:linear-gradient(90deg,#e43b35,#f05550); }
+    .progress-label { color:var(--muted); font-size:.67rem; font-weight:700; }
+    .bank-name,.date-text { color:var(--primary); font-weight:700; white-space:nowrap; }
+    .action-cell { text-align:right; }
+    .action-link { display:inline-flex; align-items:center; justify-content:center; padding:5px 10px; border-radius:999px; background:rgba(76,145,180,.08); border:1px solid rgba(76,145,180,.18); color:var(--primary); font-size:.7rem; font-weight:800; white-space:nowrap; cursor:pointer; transition:all .18s; }
+    .action-link:hover { background:var(--mist); border-color:var(--primary); }
+
+    .prospects-shell { overflow:hidden; border-radius:14px; border:1px solid rgba(118,183,212,.2); background:#fff; }
+    .prospects-head { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:11px 16px; background:linear-gradient(135deg,var(--navy),var(--deep)); color:#fff; }
+    .prospects-head strong { font-size:.84rem; }
+    .prospects-head span   { font-size:.69rem; color:rgba(255,255,255,.72); }
+    .prospects-badge { padding:5px 10px; border-radius:999px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.2); font-size:.69rem; font-weight:700; white-space:nowrap; }
+    .prospects-row { display:grid; grid-template-columns:88px 1fr max-content 180px 72px; gap:12px; align-items:center; padding:13px 16px; font-size:.78rem; border-bottom:1px solid rgba(118,183,212,.1); transition:background .15s; }
+    .prospects-row:last-child { border-bottom:0; }
+    .prospects-row:hover { background:rgba(118,183,212,.04); }
+    .prospects-note { color:var(--muted); font-size:.72rem; line-height:1.5; }
+
+    .preview-lower-grid { display:grid; grid-template-columns:1fr 280px; gap:12px; align-items:stretch; }
+    .mini-panel { background:#fff; border:1px solid rgba(118,183,212,.2); border-radius:14px; overflow:hidden; }
+    .mini-panel-head { padding:11px 16px; background:linear-gradient(135deg,#f7fbff,#eef6fb); border-bottom:1px solid rgba(118,183,212,.12); display:flex; align-items:center; justify-content:space-between; }
+    .mini-panel-head strong { font-size:.84rem; color:var(--ocean); }
+    .mini-panel-badge { padding:4px 9px; border-radius:999px; background:var(--mist); border:1px solid rgba(76,145,180,.18); color:var(--primary); font-size:.69rem; font-weight:800; white-space:nowrap; }
+    .mini-panel-body { padding:13px 16px; display:grid; gap:8px; }
+    .mini-row { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 0; border-bottom:1px solid rgba(118,183,212,.1); font-size:.8rem; }
+    .mini-row:last-child { border-bottom:0; padding-bottom:0; }
+    .mini-row strong { font-size:.86rem; color:var(--ocean); }
+    .mini-row small  { color:var(--muted); font-size:.72rem; display:block; }
+    .status-pill { padding:4px 9px; border-radius:999px; background:var(--mist); color:var(--primary); font-size:.7rem; font-weight:700; white-space:nowrap; border:1px solid rgba(76,145,180,.18); }
+
+    /* ══════════════════════════════════════
+       MARQUEE STRIP
+    ══════════════════════════════════════ */
+    .marquee-strip { padding:13px 0; background:rgba(9,25,43,.04); border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; }
+    .marquee-track { display:flex; gap:44px; animation:marquee-scroll 30s linear infinite; width:max-content; }
+    .marquee-track:hover { animation-play-state:paused; }
+    @keyframes marquee-scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .marquee-item { display:flex; align-items:center; gap:9px; font-size:.86rem; font-weight:600; color:var(--muted); white-space:nowrap; }
+    .marquee-item svg { width:17px; height:17px; stroke:var(--primary); fill:none; stroke-width:1.8; flex:0 0 auto; }
+    .marquee-dot { width:4px; height:4px; border-radius:50%; background:var(--line-strong); }
+
+    /* ══════════════════════════════════════
+       BI REPORTS SECTION — separate section
+    ══════════════════════════════════════ */
+    .reports-section {
+      padding: 80px 0;
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--line);
+    }
+    .reports-showcase {
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .reports-copy { display: grid; align-content: start; gap: 20px; }
+    .reports-copy h2 {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: 2.8rem; line-height: 1.06; letter-spacing: -.03em;
+      color: var(--ink);
+    }
+    .reports-copy p { color: var(--muted); font-size: 1.04rem; line-height: 1.78; max-width: 46ch; }
+    .reports-feature-list { display: grid; gap: 14px; margin-top: 6px; }
+    .reports-feature {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 16px 18px; border-radius: var(--r);
+      background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow-xs);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .reports-feature:hover { box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+    .reports-feature-icon { width: 38px; height: 38px; border-radius: 11px; display:inline-flex; align-items:center; justify-content:center; background:linear-gradient(135deg,var(--mist),var(--cloud)); color:var(--primary); flex:0 0 auto; }
+    .reports-feature-icon svg { width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:1.9; }
+    .reports-feature-title { font-size:.92rem; font-weight:700; margin-bottom:2px; color:var(--ocean); }
+    .reports-feature-text  { font-size:.85rem; color:var(--muted); line-height:1.5; }
+
+    /* BI dashboard preview */
+    .bi-preview {
+      background: #fff; border: 1px solid var(--line);
+      border-radius: var(--r-lg); box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .bi-preview-header {
+      padding: 14px 20px;
+      background: linear-gradient(135deg, var(--navy), var(--deep));
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    }
+    .bi-header-left { display:flex; align-items:center; gap:12px; }
+    .bi-preview-header .preview-dots { }
+    .bi-title { font-size:.88rem; font-weight:700; color:#fff; }
+    .bi-period { padding:5px 12px; border-radius:999px; background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.2); font-size:.74rem; font-weight:700; color:rgba(255,255,255,.85); white-space:nowrap; }
+
+    .bi-stats-bar {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid rgba(118,183,212,.15);
+    }
+    .bi-stat {
+      padding: 18px 20px; border-left: 1px solid rgba(118,183,212,.15);
+    }
+    .bi-stat:last-child { border-left: 0; }
+    .bi-stat-label { font-size: .74rem; color: var(--muted); margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+    .bi-stat-value { font-family: var(--font-display); font-size: 1.9rem; font-weight: 900; color: var(--ocean); line-height: 1; margin-bottom: 4px; }
+    .bi-stat-change { font-size: .76rem; font-weight: 700; }
+    .bi-stat-change.up   { color: #2eaa57; }
+    .bi-stat-change.down { color: #e43b35; }
+
+    .bi-chart-area {
+      padding: 20px;
+      background: linear-gradient(180deg, #fff 0%, #f6fbff 100%);
+    }
+    .bi-chart-row { display: grid; grid-template-columns: 1fr 280px; gap: 16px; align-items: start; }
+
+    /* bar chart */
+    .bi-bar-chart { background: #f9fcff; border: 1px solid rgba(118,183,212,.16); border-radius: 14px; padding: 16px; }
+    .bi-bar-chart-title { font-size:.82rem; font-weight:700; color:var(--ocean); margin-bottom:16px; }
+    .bi-bars { display:flex; align-items:flex-end; gap:8px; height:120px; }
+    .bi-bar-group { display:flex; flex-direction:column; align-items:center; gap:4px; flex:1; }
+    .bi-bar-wrap { display:flex; align-items:flex-end; gap:3px; height:100px; }
+    .bi-bar {
+      width: 18px; border-radius: 4px 4px 0 0;
+      transition: opacity .2s;
+    }
+    .bi-bar:hover { opacity: .8; }
+    .bi-bar.b1 { background: linear-gradient(180deg, #4c91b4, #3a7a9d); }
+    .bi-bar.b2 { background: linear-gradient(180deg, rgba(76,145,180,.35), rgba(76,145,180,.2)); }
+    .bi-bar-month { font-size:.65rem; color:var(--muted); font-weight:700; margin-top:2px; }
+
+    /* donut chart */
+    .bi-donut-card { background: #f9fcff; border: 1px solid rgba(118,183,212,.16); border-radius: 14px; padding: 16px; }
+    .bi-donut-title { font-size:.82rem; font-weight:700; color:var(--ocean); margin-bottom:14px; }
+    .bi-donut-wrap { display:flex; align-items:center; gap:16px; }
+    .bi-donut-svg { flex: 0 0 auto; }
+    .bi-legend { display:grid; gap:10px; }
+    .bi-legend-item { display:flex; align-items:center; gap:8px; font-size:.78rem; color:var(--text-sub); }
+    .bi-legend-dot { width:10px; height:10px; border-radius:50%; flex:0 0 auto; }
+    .bi-legend-val { font-weight:800; color:var(--ocean); margin-right:2px; }
+
+    /* table preview */
+    .bi-table-area { margin-top: 14px; background: #f9fcff; border: 1px solid rgba(118,183,212,.16); border-radius: 14px; overflow: hidden; }
+    .bi-table-header { padding:10px 16px; background:linear-gradient(135deg,#17385f,#1e4a7a); display:flex; align-items:center; justify-content:space-between; }
+    .bi-table-header span { font-size:.78rem; font-weight:700; color:#fff; }
+    .bi-table-header small { font-size:.7rem; color:rgba(255,255,255,.65); }
+    .bi-table { width:100%; border-collapse:collapse; }
+    .bi-table thead th { padding:9px 14px; background:rgba(240,249,255,.9); font-size:.71rem; font-weight:700; color:var(--ocean); text-align:right; border-bottom:1px solid rgba(118,183,212,.15); }
+    .bi-table tbody td { padding:9px 14px; font-size:.78rem; border-bottom:1px solid rgba(118,183,212,.08); vertical-align:middle; }
+    .bi-table tbody tr:last-child td { border-bottom:0; }
+    .bi-table tbody tr:hover { background:rgba(118,183,212,.04); }
+    .bi-amount { font-family:var(--font-display); font-weight:700; color:var(--ocean); }
+    .bi-bank-tag { display:inline-flex; padding:3px 8px; border-radius:999px; font-size:.68rem; font-weight:700; background:rgba(76,145,180,.1); color:var(--primary); border:1px solid rgba(76,145,180,.18); }
+    .bi-status-closed { display:inline-flex; padding:3px 8px; border-radius:999px; font-size:.68rem; font-weight:700; background:#eaf7ee; color:#2eaa57; border:1px solid rgba(46,170,87,.2); }
+
+    /* ══════════════════════════════════════
+       SECTIONS BASE
+    ══════════════════════════════════════ */
+    section { padding: 92px 0; }
+    .section-head { max-width: 760px; margin: 0 auto 48px; text-align: center; }
+    .section-kicker {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 16px; margin-bottom:18px; border-radius:999px;
+      background:rgba(255,255,255,.95); border:1px solid rgba(76,145,180,.2);
+      color:var(--primary); font-size:.8rem; font-weight:700; letter-spacing:.04em;
+      box-shadow:var(--shadow-xs);
+    }
+    .kicker-dot { width:6px; height:6px; border-radius:50%; background:var(--primary); }
+    .section-head h2 {
+      font-family:var(--font-display); font-weight:900;
+      font-size:2.9rem; line-height:1.1; letter-spacing:-.03em; color:var(--ink);
+    }
+    .section-head p { margin:16px auto 0; max-width:62ch; color:var(--muted); font-size:1.04rem; }
+
+    /* ══════════════════════════════════════
+       BENEFITS
+    ══════════════════════════════════════ */
+    .benefits { background: var(--bg); }
+    .benefits-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+    .benefit-card {
+      padding:32px; background:#fff; border:1px solid var(--line); border-radius:var(--r-lg);
+      box-shadow:var(--shadow-sm); transition:box-shadow .26s,transform .26s,border-color .26s;
+      position:relative; overflow:hidden;
+    }
+    .benefit-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--primary),var(--sky)); transform:scaleX(0); transform-origin:right; transition:transform .3s ease; }
+    .benefit-card:hover { box-shadow:var(--shadow-md); transform:translateY(-5px); border-color:rgba(76,145,180,.28); }
+    .benefit-card:hover::after { transform:scaleX(1); transform-origin:left; }
+    .benefit-icon { width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,var(--mist),var(--cloud)); display:inline-flex; align-items:center; justify-content:center; margin-bottom:22px; box-shadow:var(--shadow-xs); }
+    .benefit-icon svg { width:23px; height:23px; stroke:var(--primary); stroke-width:1.8; fill:none; }
+    .benefit-card h3 { font-family:var(--font-display); font-size:1.2rem; font-weight:700; margin:0 0 10px; color:var(--ink); letter-spacing:-.02em; }
+    .benefit-card p  { margin:0; color:var(--muted); font-size:.96rem; }
+
+    /* ══════════════════════════════════════
+       PRICING
+    ══════════════════════════════════════ */
+    .pricing {
+      padding:96px 0;
+      background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(76,145,180,.07),transparent 60%),
+                 linear-gradient(180deg,#f0f7fc,#e8f4fb);
+      border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    }
+    .billing-toggle-wrap { display:flex; justify-content:center; align-items:center; gap:14px; margin-top:32px; }
+    .billing-toggle-wrap > span { font-size:.95rem; font-weight:700; color:var(--muted); transition:color .2s; }
+    .billing-toggle-wrap > span.active { color:var(--ink); }
+    .save-badge { display:inline-flex; align-items:center; padding:3px 9px; border-radius:999px; background:rgba(201,168,76,.14); color:#8a5f00; font-size:.7rem; font-weight:800; margin-inline-start:8px; border:1px solid rgba(201,168,76,.25); }
+    .toggle-switch { position:relative; width:54px; height:28px; cursor:pointer; }
+    .toggle-switch input { display:none; }
+    .toggle-track { position:absolute; inset:0; border-radius:999px; background:rgba(118,183,212,.25); transition:background .25s; }
+    .toggle-thumb { position:absolute; top:3px; right:3px; width:22px; height:22px; border-radius:50%; background:#fff; box-shadow:0 2px 8px rgba(9,25,43,.2); transition:transform .25s; }
+    .toggle-switch input:checked ~ .toggle-track { background:linear-gradient(135deg,var(--primary),#3a7a9d); }
+    .toggle-switch input:checked ~ .toggle-thumb { transform:translateX(-26px); }
+    .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; align-items:stretch; margin-top:44px; }
+    .plan {
+      position:relative; display:flex; flex-direction:column;
+      padding:32px; border-radius:var(--r-lg); background:#fff; border:1px solid var(--line);
+      box-shadow:var(--shadow-sm); transition:transform .24s,box-shadow .24s,border-color .24s;
+    }
+    .plan:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); border-color:rgba(76,145,180,.3); }
+    .plan.featured { border-color:rgba(76,145,180,.38); background:linear-gradient(170deg,#fff,#edf5fb); box-shadow:0 0 0 2px rgba(76,145,180,.16),var(--shadow-lg),0 0 0 1px rgba(255,255,255,.8) inset; }
+    .plan.featured:hover { transform:translateY(-8px); box-shadow:0 0 0 2px rgba(76,145,180,.22),var(--shadow-xl),0 0 0 1px rgba(255,255,255,.8) inset; }
+    .plan-badge { position:absolute; top:18px; left:18px; display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; background:linear-gradient(135deg,var(--gold),#a8872f); color:#fff; font-size:.71rem; font-weight:800; box-shadow:0 3px 12px var(--gold-glow); }
+    .plan-top { padding-top:6px; margin-bottom:12px; }
+    .plan-category { color:var(--primary); font-size:.76rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; margin-bottom:8px; }
+    .plan-name     { font-family:var(--font-display); font-size:1.44rem; font-weight:700; letter-spacing:-.02em; margin-bottom:8px; color:var(--ink); }
+    .plan-desc     { min-height:52px; color:var(--muted); font-size:.93rem; }
+    .trial-badge   { align-self:flex-start; display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:999px; background:rgba(76,145,180,.08); border:1px solid rgba(76,145,180,.18); color:var(--primary); font-size:.74rem; font-weight:800; margin:6px 0 18px; }
+    .plan-price    { display:flex; align-items:flex-end; gap:5px; margin-bottom:6px; }
+    .price-currency{ font-size:1.24rem; font-weight:700; margin-bottom:7px; color:var(--primary); }
+    .price-amount  { font-family:var(--font-display); font-size:3.2rem; line-height:.95; font-weight:900; color:var(--ink); letter-spacing:-.05em; }
+    .price-period  { font-size:.9rem; color:var(--muted); margin-bottom:6px; }
+    .price-saving  { min-height:20px; color:var(--primary); font-size:.8rem; font-weight:700; margin-bottom:18px; }
+    .features-list { list-style:none; padding:0; margin:0 0 26px; display:grid; gap:11px; flex:1; }
+    .section-label { margin-top:12px; padding-top:12px; border-top:1px solid rgba(118,183,212,.14); font-size:.68rem; font-weight:800; color:var(--ghost); text-transform:uppercase; letter-spacing:.08em; }
+    .section-label:first-child { margin-top:0; padding-top:0; border-top:0; }
+    .features-list li { display:grid; grid-template-columns:24px 1fr; gap:10px; align-items:start; font-size:.92rem; }
+    .check      { width:22px; height:22px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:var(--mist); color:var(--primary); font-size:.71rem; font-weight:800; margin-top:1px; flex-shrink:0; }
+    .gold-check { background:var(--gold-soft); color:#a87600; }
+    .plan .btn  { width:100%; min-height:50px; }
+
+    /* ══════════════════════════════════════
+       AUDIENCE
+    ══════════════════════════════════════ */
+    .use-cases-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+    .use-case {
+      padding:28px; border-radius:var(--r-lg); background:#fff; border:1px solid var(--line);
+      box-shadow:var(--shadow-xs); transition:box-shadow .24s,transform .24s;
+    }
+    .use-case:hover { box-shadow:var(--shadow-md); transform:translateY(-3px); }
+    .use-case-num  { font-family:var(--font-display); font-size:3rem; font-weight:900; color:rgba(76,145,180,.1); line-height:1; margin-bottom:10px; }
+    .use-case h3   { font-family:var(--font-display); margin:0 0 10px; font-size:1.1rem; font-weight:700; color:var(--ink); letter-spacing:-.015em; }
+    .use-case p    { margin:0; color:var(--muted); font-size:.94rem; }
+
+    /* ══════════════════════════════════════
+       FAQ
+    ══════════════════════════════════════ */
+    .faq-shell { max-width:860px; margin:0 auto; border-radius:var(--r-xl); background:#fff; border:1px solid var(--line); box-shadow:var(--shadow-md); overflow:hidden; }
+    .faq-item  { border-bottom:1px solid rgba(118,183,212,.12); }
+    .faq-item:last-child { border-bottom:0; }
+    .faq-item details summary { list-style:none; cursor:pointer; display:flex; justify-content:space-between; gap:16px; align-items:center; padding:22px 32px; font-size:1rem; font-weight:700; color:var(--ink); transition:color .2s,background .2s; }
+    .faq-item details summary:hover { color:var(--primary); background:rgba(76,145,180,.03); }
+    .faq-item details summary::-webkit-details-marker { display:none; }
+    .faq-item details summary::after { content:'+'; width:28px; height:28px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:var(--mist); border:1px solid rgba(76,145,180,.18); color:var(--primary); font-size:1.1rem; flex:0 0 auto; transition:all .2s; }
+    .faq-item details[open] summary::after { content:'−'; background:linear-gradient(135deg,var(--primary),#3a7a9d); color:#fff; border-color:transparent; }
+    .faq-item details[open] summary { color:var(--primary); }
+    .faq-item details p { padding:0 32px 22px; color:var(--muted); font-size:.95rem; line-height:1.78; }
+
+    /* ══════════════════════════════════════
+       CTA
+    ══════════════════════════════════════ */
+    .cta { padding-bottom:100px; }
+    .cta-box {
+      position:relative; overflow:hidden; border-radius:var(--r-xl);
+      background:linear-gradient(140deg,var(--ink) 0%,var(--navy) 35%,var(--deep) 65%,#2a6289 100%);
+      color:#fff; padding:60px 56px;
+      box-shadow:var(--shadow-xl),0 0 0 1px rgba(76,145,180,.18) inset;
+    }
+    .cta-box::before { content:'START'; position:absolute; bottom:-40px; left:-10px; font-family:var(--font-display); font-size:240px; font-weight:900; line-height:1; color:rgba(255,255,255,.03); pointer-events:none; user-select:none; letter-spacing:-.05em; }
+    .cta-box::after  { content:''; position:absolute; width:500px; height:500px; border-radius:50%; background:radial-gradient(circle,rgba(76,145,180,.12),transparent 66%); top:-200px; right:-100px; pointer-events:none; }
+    .cta-grid { position:relative; z-index:1; display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center; }
+    .cta h2 { font-family:var(--font-display); margin:0 0 12px; font-size:3.2rem; font-weight:900; line-height:1.05; letter-spacing:-.04em; }
+    .cta p  { margin:0; max-width:52ch; color:rgba(255,255,255,.7); font-size:1.04rem; }
+    .cta-actions { display:flex; flex-direction:column; gap:12px; align-items:stretch; min-width:220px; }
+    .cta .btn-gold    { background:#fff; color:var(--navy); box-shadow:0 5px 22px rgba(0,0,0,.24); }
+    .cta .btn-gold::before { background:none; }
+    .cta .btn-gold:hover { background:#f0f8ff; box-shadow:0 10px 36px rgba(0,0,0,.3); transform:translateY(-2px); }
+    .cta .btn-ghost-white { }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    footer { padding:0 0 44px; text-align:center; color:var(--muted); font-size:.88rem; }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══════════════════════════════════ -->
+  <header class="site-header">
+    <div class="container site-header-inner">
+      <a href="#top" class="brand" aria-label="משכנתי">
+        <img class="brand-logo" src="https://static.wixstatic.com/media/89b08a_1b58e1d86b844499afb77fe8a3b32d1d.jpg/v1/fill/w_260%2Ch_69%2Cal_c%2Cq_80%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/89b08a_1b58e1d86b844499afb77fe8a3b32d1d.jpg" alt="לוגו משכנתי">
+        <span class="brand-text">
+          <span class="brand-title">מערכת ניהול משכנתאות לבעלי מקצוע</span>
+          <span class="brand-subtitle">סימולציות, ניהול לקוחות ודוחות — במקום אחד</span>
+        </span>
+      </a>
+      <nav class="nav">
+        <a href="#benefits">למה משכנתי</a>
+        <a href="#reports">מערכת דוחות</a>
+        <a href="#pricing">מסלולים</a>
+        <a href="#audience">למי זה מתאים</a>
+        <a href="#faq">שאלות נפוצות</a>
+      </nav>
+      <a href="https://wa.me/972548037092" class="nav-cta">שיחה בוואטסאפ</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ══ HERO ══════════════════════════════════ -->
+    <!-- NO reveal classes here — always visible immediately -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+
+          <!-- Copy -->
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              נבנה עם יועצי משכנתאות עבור יועצי משכנתאות
+            </div>
+            <h1>מערכת אחת שמסדרת לך את <em>כל</em> העבודה</h1>
+            <p class="hero-lead">
+              משכנתי מרכזת <strong>סימולציות משכנתה</strong>, <strong>ניהול לקוחות</strong> ו<strong>דוחות מקצועיים</strong>
+              בממשק נקי, ברור ומכבד — כזה שמשדר מקצוענות גם לך וגם ללקוחות שלך.
+            </p>
+
+            <div class="hero-stats">
+              <div class="hero-stat">
+                <span class="hero-stat-num">30</span>
+                <span class="hero-stat-label">יום ניסיון חינמי</span>
+              </div>
+              <div class="hero-stat-sep"></div>
+              <div class="hero-stat">
+                <span class="hero-stat-num">₪22</span>
+                <span class="hero-stat-label">התחלה לחודש</span>
+              </div>
+              <div class="hero-stat-sep"></div>
+              <div class="hero-stat">
+                <span class="hero-stat-num">100%</span>
+                <span class="hero-stat-label">נתונים אצלך בלבד</span>
+              </div>
+            </div>
+
+            <div class="hero-points">
+              <div class="hero-point">
+                <div class="hero-point-icon">
+                  <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 12h16M4 6h16M4 18h10"/></svg>
+                </div>
+                <div>
+                  <div class="hero-point-title">סימולציות מדויקות</div>
+                  <div class="hero-point-text">לוחות סילוקין, השוואות מסלולים, חישובי החזר וייצוא מסודר ללקוח.</div>
+                </div>
+              </div>
+              <div class="hero-point">
+                <div class="hero-point-icon">
+                  <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M4 20a8 8 0 0 1 16 0"/></svg>
+                </div>
+                <div>
+                  <div class="hero-point-title">ניהול לקוחות מסודר</div>
+                  <div class="hero-point-text">תיקים, סטטוסים, מסמכים, תזכורות ומעקב עבודה — בלי להתפזר בין קבצים.</div>
+                </div>
+              </div>
+              <div class="hero-point">
+                <div class="hero-point-icon">
+                  <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6 20V10M12 20V4M18 20v-7"/></svg>
+                </div>
+                <div>
+                  <div class="hero-point-title">דוחות BI מקצועיים</div>
+                  <div class="hero-point-text">סיכומים, סטטיסטיקות ו-PDF שנראים כמו שצריך ומשדרים ערך ללקוח.</div>
+                </div>
+              </div>
+              <div class="hero-point">
+                <div class="hero-point-icon">
+                  <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 7v5l3 3"/><circle cx="12" cy="12" r="9"/></svg>
+                </div>
+                <div>
+                  <div class="hero-point-title">הטמעה מהירה</div>
+                  <div class="hero-point-text">מורידים, מתחילים לעבוד, ומשפרים את הזרימה היומית כמעט מיד.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-actions">
+              <a href="https://github.com/golombs-collab/mashkanti-releases/releases/latest/download/mashkanti-setup-1.0.0.exe" class="btn btn-gold">הורדת ניסיון חינמי ל-30 יום</a>
+              <a href="https://wa.me/972548037092" class="btn btn-ghost-white">לדבר איתי לפני ההורדה</a>
+            </div>
+            <div class="hero-meta">
+              <span class="hero-chip">ללא התחייבות</span>
+              <span class="hero-chip">נתונים אצלך בלבד</span>
+              <span class="hero-chip">תמיכה ישירה</span>
+              <span class="hero-chip">שדרוג קל בין מסלולים</span>
+            </div>
+          </div>
+
+          <!-- Preview: client management dashboard -->
+          <div class="preview-card">
+            <div class="preview-window">
+              <div class="preview-topbar">
+                <div class="preview-topbar-left">
+                  <div class="preview-dots"><span></span><span></span><span></span></div>
+                  <span class="preview-label">לוח בקרה — ניהול לקוחות</span>
+                </div>
+                <span class="preview-status">● מחובר</span>
+              </div>
+              <div class="preview-body">
+                <div class="preview-hero-note">
+                  <div>
+                    <strong>תיקים פעילים הבוקר</strong>
+                    <span>4 תיקים חדשים נוספו השבוע · 2 ממתינים לאישור בנקאי · עדכון ריבית פריים מחר</span>
+                  </div>
+                  <span class="preview-view-badge">סקירה כללית</span>
+                </div>
+
+                <div class="preview-summary-grid">
+                  <div class="preview-summary is-active">
+                    <div class="summary-number">14</div>
+                    <div class="summary-label">תיקים פעילים</div>
+                    <small>+4 השבוע</small>
+                  </div>
+                  <div class="preview-summary is-potential">
+                    <div class="summary-number">7</div>
+                    <div class="summary-label">פוטנציאל</div>
+                    <small>3 ממתינים לפגישה</small>
+                  </div>
+                  <div class="preview-summary is-waiting">
+                    <div class="summary-number">3</div>
+                    <div class="summary-label">ממתין לבנק</div>
+                    <small>אישור עקרוני</small>
+                  </div>
+                </div>
+
+                <div class="preview-toolbar">
+                  <div class="preview-toolbar-meta">
+                    <strong>תיקים פעילים</strong>
+                    <span>עודכן: היום 09:14</span>
+                  </div>
+                  <div class="filter-chips">
+                    <span class="filter-chip active">הכל</span>
+                    <span class="filter-chip">טיפול</span>
+                    <span class="filter-chip">ממתין</span>
+                    <span class="filter-chip">סגור</span>
+                  </div>
+                </div>
+
+                <div class="dashboard-shell">
+                  <table class="dashboard-table">
+                    <thead>
+                      <tr><th>מס' תיק</th><th>לקוח</th><th>סטטוס</th><th>התקדמות</th><th>בנק</th><th>תאריך</th><th></th></tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span class="ticket-code">#1042</span></td>
+                        <td><div class="client-meta"><strong>אבי ורחל לוי</strong><small>₪1.4M · 25 שנה</small></div></td>
+                        <td><span class="status-badge is-open">בטיפול</span></td>
+                        <td><div class="progress-stack"><div class="progress-seg done"></div><div class="progress-seg done"></div><div class="progress-seg done"></div><div class="progress-seg"></div><div class="progress-seg"></div></div><span class="progress-label">3/5 שלבים</span></td>
+                        <td><span class="bank-name">הפועלים</span></td>
+                        <td><span class="date-text">12.05</span></td>
+                        <td class="action-cell"><span class="action-link">פתח</span></td>
+                      </tr>
+                      <tr>
+                        <td><span class="ticket-code">#1038</span></td>
+                        <td><div class="client-meta"><strong>דני כהן</strong><small>₪850K · 20 שנה</small></div></td>
+                        <td><span class="status-badge is-soft">פוטנציאל</span></td>
+                        <td><div class="progress-stack"><div class="progress-seg done"></div><div class="progress-seg done"></div><div class="progress-seg"></div><div class="progress-seg"></div><div class="progress-seg"></div></div><span class="progress-label">2/5 שלבים</span></td>
+                        <td><span class="bank-name">לאומי</span></td>
+                        <td><span class="date-text">10.05</span></td>
+                        <td class="action-cell"><span class="action-link">פתח</span></td>
+                      </tr>
+                      <tr>
+                        <td><span class="ticket-code">#1031</span></td>
+                        <td><div class="client-meta"><strong>שרית ומוטי גל</strong><small>מיחזור · ₪620K</small></div></td>
+                        <td><span class="status-badge is-review">ממתין לבנק</span></td>
+                        <td><div class="progress-stack"><div class="progress-seg done"></div><div class="progress-seg done"></div><div class="progress-seg done"></div><div class="progress-seg done"></div><div class="progress-seg alert"></div></div><span class="progress-label">ממתין לאישור</span></td>
+                        <td><span class="bank-name">מזרחי</span></td>
+                        <td><span class="date-text">08.05</span></td>
+                        <td class="action-cell"><span class="action-link">פתח</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="prospects-shell">
+                  <div class="prospects-head">
+                    <div><strong>לידים פוטנציאליים</strong><span>שלב בירור ראשוני</span></div>
+                    <span class="prospects-badge">7 ממתינים</span>
+                  </div>
+                  <div class="prospects-row">
+                    <span class="ticket-code">#P-019</span>
+                    <div class="client-meta"><strong>נועה ואור מנחם</strong><small>₪1.1M · זוג ראשון</small></div>
+                    <span class="status-badge is-soft">פוטנציאל</span>
+                    <div class="prospects-note">שלחו שאלות בוואטסאפ, צריכים הבהרות</div>
+                    <span class="action-link">פתח</span>
+                  </div>
+                  <div class="prospects-row">
+                    <span class="ticket-code">#P-018</span>
+                    <div class="client-meta"><strong>יגאל עמרם</strong><small>מיחזור קיים · ₪450K</small></div>
+                    <span class="status-badge is-review">ממתין</span>
+                    <div class="prospects-note">ממתין להצעת ריבית מהפועלים</div>
+                    <span class="action-link">פתח</span>
+                  </div>
+                </div>
+
+                <div class="preview-lower-grid">
+                  <div class="mini-panel">
+                    <div class="mini-panel-head"><strong>סימולציות שנשמרו</strong><span class="mini-panel-badge">6 סה"כ</span></div>
+                    <div class="mini-panel-body">
+                      <div class="mini-row"><div><strong>לוי</strong><small>שפיצר 25 שנה</small></div><span class="status-pill">עדכני</span></div>
+                      <div class="mini-row"><div><strong>כהן</strong><small>קרן שווה 20 שנה</small></div><span class="status-pill">עדכני</span></div>
+                      <div class="mini-row"><div><strong>גל</strong><small>מיחזור + פריים</small></div><span class="status-pill">טיוטה</span></div>
+                    </div>
+                  </div>
+                  <div class="mini-panel">
+                    <div class="mini-panel-head"><strong>תזכורות קרובות</strong><span class="mini-panel-badge">3</span></div>
+                    <div class="mini-panel-body">
+                      <div class="mini-row"><div><strong>לוי</strong><small>אישור עקרוני</small></div><span class="status-pill">מחר</span></div>
+                      <div class="mini-row"><div><strong>כהן</strong><small>שליחת מסמכים</small></div><span class="status-pill">22.05</span></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!-- end preview card -->
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ MARQUEE ════════════════════════════════ -->
+    <div class="marquee-strip">
+      <div class="marquee-track">
+        <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>נתונים נשמרים אצלך בלבד</div><div class="marquee-dot"></div>
+        <div class="marquee-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>30 יום ניסיון ללא כרטיס אשראי</div><div class="marquee-dot"></div>
+        <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>נבנה עם יועצי משכנתאות בפועל</div><div class="marquee-dot"></div>
+        <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>ייצוא PDF מלוטש ללקוח</div><div class="marquee-dot"></div>
+        <div class="marquee-item"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>עדכוני ריבית ומדד בזמן אמת</div><div class="marquee-dot"></div>
+        <div class="marquee-item"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>עובד לגמרי אופלין</div><div class="marquee-dot"></div>
+        <!-- duplicate -->
+        <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>נתונים נשמרים אצלך בלבד</div><div class="marquee-dot"></div>
+        <div class="marquee-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>30 יום ניסיון ללא כרטיס אשראי</div><div class="marquee-dot"></div>
+        <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>נבנה עם יועצי משכנתאות בפועל</div><div class="marquee-dot"></div>
+        <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>ייצוא PDF מלוטש ללקוח</div><div class="marquee-dot"></div>
+        <div class="marquee-item"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>עדכוני ריבית ומדד בזמן אמת</div><div class="marquee-dot"></div>
+        <div class="marquee-item"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>עובד לגמרי אופלין</div><div class="marquee-dot"></div>
+      </div>
+    </div>
+
+    <!-- ══ BENEFITS ══════════════════════════════ -->
+    <section id="benefits" class="benefits">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker"><span class="kicker-dot"></span>למה משכנתי</div>
+          <h2>הכלים שבעל מקצוע צריך — בלי העומס שהוא לא</h2>
+          <p>משכנתי לא מנסה לעשות הכל. היא עושה את הדברים החשובים בצורה מדויקת, מהירה ומקצועית.</p>
+        </div>
+        <div class="benefits-grid">
+          <div class="benefit-card reveal">
+            <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M9 7H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-4"/><rect x="9" y="3" width="6" height="8" rx="1"/></svg></div>
+            <h3>סימולטור משכנתה מלא</h3>
+            <p>שפיצר, קרן שווה, פריים, מסלולים צמודים — כל החישובים בממשק אחד. לוח סילוקין, LTV, הכנסה נדרשת וייצוא מסודר ללקוח.</p>
+          </div>
+          <div class="benefit-card reveal reveal-d1">
+            <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <h3>ניהול לקוחות ותיקים</h3>
+            <p>תיקים מלאים עם כל הנתונים, מסמכים, סטטוסים, מעקב תהליך ולוח ריצה — כל המידע על לקוח אחד במקום אחד.</p>
+          </div>
+          <div class="benefit-card reveal reveal-d2">
+            <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M6 20V10M12 20V4M18 20v-7"/></svg></div>
+            <h3>דוחות BI מקצועיים</h3>
+            <p>ביצועים חודשיים ושנתיים, סטטיסטיקת תיק לקוחות, דוחות מסמכים וסטטוסים — וייצוא PDF שמכבד את שם המשרד שלך.</p>
+          </div>
+          <div class="benefit-card reveal">
+            <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+            <h3>ייצוא מסמכים ללקוח</h3>
+            <p>כל סימולציה, לוח סילוקין והמלצה — ניתן לייצא ל-PDF בפורמט מוכן לשליחה. הלקוח מקבל מסמך שנראה כמו שצריך.</p>
+          </div>
+          <div class="benefit-card reveal reveal-d1">
+            <div class="benefit-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <h3>עדכונים ריאליים</h3>
+            <p>נתוני ריבית פריים ובנק ישראל, עדכוני מדד ואחוזי LTV עדכניים — המערכת שומרת אותך מעודכן בלי לחפש בעצמך.</p>
+          </div>
+          <div class="benefit-card reveal reveal-d2">
+            <div class="benefit-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <h3>עובד לגמרי אופלין</h3>
+            <p>המערכת יושבת על המחשב שלך. הנתונים נשמרים אצלך, עובדים בלי חיבור לאינטרנט, ואין תלות בשרתים חיצוניים.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ BI REPORTS SECTION — separate from client mgmt ══ -->
+    <section id="reports" class="reports-section">
+      <div class="container">
+        <div class="reports-showcase">
+
+          <!-- Copy -->
+          <div class="reports-copy reveal">
+            <div class="section-kicker"><span class="kicker-dot"></span>מערכת דוחות BI</div>
+            <h2>הנתונים שלך — בצורה שמספרת סיפור</h2>
+            <p>מעבר לניהול השוטף, משכנתי מאפשרת לך לראות את העסק שלך מלמעלה — כמה הלוואות סגרת, מאיזה בנקים, מה ההיקף הממוצע, ואיך אתה מתקדם לאורך זמן.</p>
+            <div class="reports-feature-list">
+              <div class="reports-feature">
+                <div class="reports-feature-icon"><svg viewBox="0 0 24 24"><path d="M6 20V10M12 20V4M18 20v-7"/></svg></div>
+                <div>
+                  <div class="reports-feature-title">דוחות ביצועים חודשיים ושנתיים</div>
+                  <div class="reports-feature-text">היקף הלוואות, מספר תיקים, ממוצע לתיק — בתרשים ברור לפי חודשים.</div>
+                </div>
+              </div>
+              <div class="reports-feature">
+                <div class="reports-feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+                <div>
+                  <div class="reports-feature-title">פיזור לפי בנקים ומסלולים</div>
+                  <div class="reports-feature-text">ראה עם אילו בנקים אתה עובד הכי הרבה ואיזה מסלולים הלקוחות שלך בוחרים.</div>
+                </div>
+              </div>
+              <div class="reports-feature">
+                <div class="reports-feature-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                <div>
+                  <div class="reports-feature-title">ייצוא ל-PDF מוכן להצגה</div>
+                  <div class="reports-feature-text">שלח ללקוח, הצג לבנק, שמור לסיכום שנתי — בפורמט שנראה מקצועי.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- BI Dashboard Preview -->
+          <div class="bi-preview reveal reveal-d1">
+            <div class="bi-preview-header">
+              <div class="bi-header-left">
+                <div class="preview-dots"><span></span><span></span><span></span></div>
+                <span class="bi-title">מערכת דוחות BI — סיכום שנתי</span>
+              </div>
+              <span class="bi-period">ינואר–דצמבר 2024</span>
+            </div>
+
+            <div class="bi-stats-bar">
+              <div class="bi-stat">
+                <div class="bi-stat-label">היקף כולל</div>
+                <div class="bi-stat-value">₪18.4M</div>
+                <div class="bi-stat-change up">↑ 12% מ-2023</div>
+              </div>
+              <div class="bi-stat">
+                <div class="bi-stat-label">תיקים שנסגרו</div>
+                <div class="bi-stat-value">19</div>
+                <div class="bi-stat-change up">↑ 3 תיקים</div>
+              </div>
+              <div class="bi-stat">
+                <div class="bi-stat-label">ממוצע לתיק</div>
+                <div class="bi-stat-value">₪968K</div>
+                <div class="bi-stat-change up">↑ 8%</div>
+              </div>
+              <div class="bi-stat">
+                <div class="bi-stat-label">בנקים פעילים</div>
+                <div class="bi-stat-value">6</div>
+                <div class="bi-stat-change up">+1 חדש</div>
+              </div>
+            </div>
+
+            <div class="bi-chart-area">
+              <div class="bi-chart-row">
+                <!-- Bar chart -->
+                <div class="bi-bar-chart">
+                  <div class="bi-bar-chart-title">היקף הלוואות חודשי (מיליון ₪)</div>
+                  <div class="bi-bars">
+                    <div class="bi-bar-group"><div class="bi-bar-wrap"><div class="bi-bar b1" style="height:52px"></div><div class="bi-bar b2" style="height:38px"></div></div><div class="bi-bar-month">ינו׳</div></div>
+                    <div class="bi-bar-group"><div class="bi-bar-wrap"><div class="bi-bar b1" style="height:68px"></div><div class="bi-bar b2" style="height:44px"></div></div><div class="bi-bar-month">פבר׳</div></div>
+                    <div class="bi-bar-group"><div class="bi-bar-wrap"><div class="bi-bar b1" style="height:45px"></div><div class="bi-bar b2" style="height:30px"></div></div><div class="bi-bar-month">מרץ</div></div>
+                    <div class="bi-bar-group"><div class="bi-bar-wrap"><div class="bi-bar b1" style="height:88px"></div><div class="bi-bar b2" style="height:56px"></div></div><div class="bi-bar-month">אפר׳</div></div>
+                    <div class="bi-bar-group"><div class="bi-bar-wrap"><div class="bi-bar b1" style="height:74px"></div><div class="bi-bar b2" style="height:50px"></div></div><div class="bi-bar-month">מאי</div></div>
+                    <div class="bi-bar-group"><div class="bi-bar-wrap"><div class="bi-bar b1" style="height:100px"></div><div class="bi-bar b2" style="height:66px"></div></div><div class="bi-bar-month">יוני</div></div>
+                    <div class="bi-bar-group"><div class="bi-bar-wrap"><div class="bi-bar b1" style="height:60px"></div><div class="bi-bar b2" style="height:42px"></div></div><div class="bi-bar-month">יולי</div></div>
+                    <div class="bi-bar-group"><div class="bi-bar-wrap"><div class="bi-bar b1" style="height:82px"></div><div class="bi-bar b2" style="height:54px"></div></div><div class="bi-bar-month">אוג׳</div></div>
+                  </div>
+                </div>
+                <!-- Donut chart -->
+                <div class="bi-donut-card">
+                  <div class="bi-donut-title">פיזור לפי בנקים</div>
+                  <div class="bi-donut-wrap">
+                    <svg class="bi-donut-svg" width="90" height="90" viewBox="0 0 90 90">
+                      <circle cx="45" cy="45" r="34" fill="none" stroke="#eaf5fb" stroke-width="14"/>
+                      <circle cx="45" cy="45" r="34" fill="none" stroke="#4c91b4" stroke-width="14" stroke-dasharray="88 126" stroke-dashoffset="0" transform="rotate(-90 45 45)"/>
+                      <circle cx="45" cy="45" r="34" fill="none" stroke="#7d4ce0" stroke-width="14" stroke-dasharray="50 164" stroke-dashoffset="-88" transform="rotate(-90 45 45)"/>
+                      <circle cx="45" cy="45" r="34" fill="none" stroke="#e0911f" stroke-width="14" stroke-dasharray="30 184" stroke-dashoffset="-138" transform="rotate(-90 45 45)"/>
+                      <circle cx="45" cy="45" r="34" fill="none" stroke="#2eaa57" stroke-width="14" stroke-dasharray="18 196" stroke-dashoffset="-168" transform="rotate(-90 45 45)"/>
+                      <text x="45" y="49" text-anchor="middle" font-size="11" font-weight="700" fill="#17385f" font-family="Heebo,Arial">6 בנקים</text>
+                    </svg>
+                    <div class="bi-legend">
+                      <div class="bi-legend-item"><div class="bi-legend-dot" style="background:#4c91b4"></div><span><span class="bi-legend-val">41%</span> הפועלים</span></div>
+                      <div class="bi-legend-item"><div class="bi-legend-dot" style="background:#7d4ce0"></div><span><span class="bi-legend-val">23%</span> לאומי</span></div>
+                      <div class="bi-legend-item"><div class="bi-legend-dot" style="background:#e0911f"></div><span><span class="bi-legend-val">14%</span> מזרחי</span></div>
+                      <div class="bi-legend-item"><div class="bi-legend-dot" style="background:#2eaa57"></div><span><span class="bi-legend-val">22%</span> אחרים</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Summary table -->
+              <div class="bi-table-area">
+                <div class="bi-table-header">
+                  <span>תיקים שנסגרו — סיכום</span>
+                  <small>מיין לפי: היקף הלוואה ↓</small>
+                </div>
+                <table class="bi-table">
+                  <thead><tr><th>לקוח</th><th>בנק</th><th>מסלול</th><th>היקף</th><th>תאריך סגירה</th><th>סטטוס</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>לוי</strong></td><td><span class="bi-bank-tag">הפועלים</span></td><td>שפיצר 25 שנה</td><td><span class="bi-amount">₪1.4M</span></td><td>12.03.24</td><td><span class="bi-status-closed">נסגר</span></td></tr>
+                    <tr><td><strong>מנחם</strong></td><td><span class="bi-bank-tag">לאומי</span></td><td>פריים + קבועה</td><td><span class="bi-amount">₪1.1M</span></td><td>28.02.24</td><td><span class="bi-status-closed">נסגר</span></td></tr>
+                    <tr><td><strong>כהן</strong></td><td><span class="bi-bank-tag">מזרחי</span></td><td>קרן שווה 20 שנה</td><td><span class="bi-amount">₪850K</span></td><td>15.01.24</td><td><span class="bi-status-closed">נסגר</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- end bi-preview -->
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ PRICING ════════════════════════════════ -->
+    <section id="pricing" class="pricing">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker"><span class="kicker-dot"></span>מסלולים ומחירים</div>
+          <h2>מחיר שמתאים לסדר הגודל שלך</h2>
+          <p>שלושה מסלולים — מייעוץ בסיסי עד ניהול תיקים מלא. כולם מתחילים ב-30 יום ניסיון חינמי ללא כרטיס אשראי.</p>
+        </div>
+        <div class="billing-toggle-wrap reveal">
+          <span id="lbl-monthly" class="active">חודשי</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="billing-toggle" onchange="switchBilling(this.checked)">
+            <div class="toggle-track"></div>
+            <div class="toggle-thumb"></div>
+          </label>
+          <span id="lbl-annual">שנתי <span class="save-badge">חוסכים עד ₪56</span></span>
+        </div>
+        <div class="pricing-grid reveal">
+          <article class="plan">
+            <div class="plan-top">
+              <div class="plan-category">Start</div>
+              <div class="plan-name">ייעוץ וסימולציות</div>
+              <div class="plan-desc">למי שרוצה לתת ייעוץ מדויק, להפיק סימולציות ברמה גבוהה ולהציג תשובות מקצועיות ללקוח.</div>
+            </div>
+            <div class="trial-badge">30 יום ניסיון חינמי</div>
+            <div class="plan-price"><span class="price-currency">₪</span><span class="price-amount" id="p1-amount">22</span><span class="price-period" id="p1-period">/ חודש</span></div>
+            <div class="price-saving" id="p1-saving"></div>
+            <ul class="features-list">
+              <div class="section-label">מערכת ייעוץ וסימולציות</div>
+              <li><span class="check">✓</span><span>סימולטור משכנתה מלא (קרן שווה / שפיצר / פריים)</span></li>
+              <li><span class="check">✓</span><span>השוואת מסלולי ריבית</span></li>
+              <li><span class="check">✓</span><span>חישוב LTV, הכנסה נדרשת ועוד</span></li>
+              <li><span class="check">✓</span><span>הצגת לוח סילוקין מפורט</span></li>
+              <li><span class="check">✓</span><span>ייצוא תוצאות ללקוח</span></li>
+            </ul>
+            <a href="https://github.com/golombs-collab/mashkanti-releases/releases/latest/download/mashkanti-setup-1.0.0.exe" class="btn btn-outline">להורדת ניסיון חינמי</a>
+          </article>
+          <article class="plan featured">
+            <div class="plan-badge">הבחירה הפופולרית</div>
+            <div class="plan-top">
+              <div class="plan-category">Professional</div>
+              <div class="plan-name">ייעוץ + ניהול לקוחות</div>
+              <div class="plan-desc">למי שכבר עובד עם תיקים באופן שוטף ורוצה להחזיק תהליך מסודר, עקבי וקל לניהול.</div>
+            </div>
+            <div class="trial-badge">30 יום ניסיון חינמי</div>
+            <div class="plan-price"><span class="price-currency">₪</span><span class="price-amount" id="p2-amount">30</span><span class="price-period" id="p2-period">/ חודש</span></div>
+            <div class="price-saving" id="p2-saving"></div>
+            <ul class="features-list">
+              <div class="section-label">מערכת ייעוץ וסימולציות</div>
+              <li><span class="check">✓</span><span>כל הכלים מהמסלול הבסיסי</span></li>
+              <div class="section-label">מערכת ניהול לקוחות</div>
+              <li><span class="check">✓</span><span>תיק לקוח מלא עם כל הנתונים</span></li>
+              <li><span class="check">✓</span><span>מעקב סטטוס תהליך ובנקים</span></li>
+              <li><span class="check">✓</span><span>ניהול מסמכים לכל לקוח</span></li>
+              <li><span class="check">✓</span><span>לוח ריצה ותזכורות</span></li>
+              <li><span class="check">✓</span><span>חיפוש וסינון מהיר</span></li>
+            </ul>
+            <a href="https://github.com/golombs-collab/mashkanti-releases/releases/latest/download/mashkanti-setup-1.0.0.exe" class="btn btn-blue">להורדת ניסיון חינמי</a>
+          </article>
+          <article class="plan">
+            <div class="plan-top">
+              <div class="plan-category">Complete</div>
+              <div class="plan-name">חבילה מלאה</div>
+              <div class="plan-desc">למי שרוצה להחזיק גם את שכבת הבקרה והדיווח — ולהפוך את המערכת לבסיס העבודה השוטף.</div>
+            </div>
+            <div class="trial-badge">30 יום ניסיון חינמי</div>
+            <div class="plan-price"><span class="price-currency">₪</span><span class="price-amount" id="p3-amount">38</span><span class="price-period" id="p3-period">/ חודש</span></div>
+            <div class="price-saving" id="p3-saving"></div>
+            <ul class="features-list">
+              <div class="section-label">מערכת ייעוץ וסימולציות</div>
+              <li><span class="check">✓</span><span>כל הכלים מהמסלולים הקודמים</span></li>
+              <div class="section-label">מערכת ניהול לקוחות</div>
+              <li><span class="check">✓</span><span>ניהול לקוחות ותיקים מלא</span></li>
+              <div class="section-label">מערכת דוחות</div>
+              <li><span class="check gold-check">★</span><span>דוחות ביצועים חודשיים/שנתיים</span></li>
+              <li><span class="check gold-check">★</span><span>סטטיסטיקת תיק לקוחות</span></li>
+              <li><span class="check gold-check">★</span><span>דוחות מסמכים וסטטוסים</span></li>
+              <li><span class="check gold-check">★</span><span>ייצוא דוחות ל-PDF</span></li>
+            </ul>
+            <a href="https://github.com/golombs-collab/mashkanti-releases/releases/latest/download/mashkanti-setup-1.0.0.exe" class="btn btn-outline">להורדת ניסיון חינמי</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ AUDIENCE ═══════════════════════════════ -->
+    <section id="audience">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker"><span class="kicker-dot"></span>למי זה מתאים</div>
+          <h2>המוצר יושב טוב על בעלי מקצוע שרוצים להיראות מסודר יותר ולעבוד מהר יותר</h2>
+          <p>לא רק מה שיש במערכת — אלא מי מרוויח ממנה ואיך היא משתלבת ביום־יום.</p>
+        </div>
+        <div class="use-cases-grid">
+          <article class="use-case reveal"><div class="use-case-num">01</div><h3>יועצי משכנתאות עצמאיים</h3><p>אם אתה רוצה להחליף שילוב של אקסלים, מסמכים ידניים ותזכורות מפוזרות — זה המקום שבו העבודה מתחילה להתכנס.</p></article>
+          <article class="use-case reveal reveal-d1"><div class="use-case-num">02</div><h3>מי שעובד עם מיחזורים ותיקים מורכבים</h3><p>ככל שיש יותר פרטים, מסמכים ובדיקות בדרך, כך הערך של מערכת מסודרת גדל משמעותית.</p></article>
+          <article class="use-case reveal reveal-d2"><div class="use-case-num">03</div><h3>בעלי מקצוע שרוצים להיראות פרימיום</h3><p>המסר כאן הוא לא רק "יש לי מערכת", אלא "יש לי תהליך מסודר, מקצועי ומכבד מול הלקוח".</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FAQ ════════════════════════════════════ -->
+    <section id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker"><span class="kicker-dot"></span>שאלות נפוצות</div>
+          <h2>כל מה שסביר שישאלו אותך לפני הורדה או רכישה</h2>
+        </div>
+        <div class="faq-shell reveal">
+          <div class="faq-item"><details><summary>מה כולל הניסיון החינמי של 30 יום?</summary><p>הניסיון החינמי נותן גישה מלאה לכל תכונות החבילה המלאה — ללא הגבלה וללא צורך בכרטיס אשראי. בתום 30 הימים ניתן לבחור את המסלול המתאים ולהמשיך מאותו מקום.</p></details></div>
+          <div class="faq-item"><details><summary>מה ההבדל בין תשלום חודשי לשנתי?</summary><p>בתשלום שנתי משלמים מראש ומקבלים מחיר עדיף לעומת תשלום חודשי. זה מתאים במיוחד למי שכבר יודע שהמערכת הולכת להיות חלק מהעבודה הקבועה שלו.</p></details></div>
+          <div class="faq-item"><details><summary>האם יש התחייבות לתקופה?</summary><p>במסלול חודשי אין התחייבות וניתן להפסיק בכל עת. במסלול שנתי נהנים מהנחה בתמורה לתשלום מראש לשנה מלאה.</p></details></div>
+          <div class="faq-item"><details><summary>האם אפשר לשדרג מסלול בהמשך?</summary><p>כן. המעבר בין המסלולים פשוט וטבעי, כך שאפשר להתחיל במסלול בסיסי ולגדול רק כשהצורך האמיתי מגיע.</p></details></div>
+          <div class="faq-item"><details><summary>איפה נשמרים הנתונים שלי?</summary><p>כל הנתונים נשמרים מקומית על המחשב שלך בלבד. אין תלות בשרתי ענן לצורך העבודה היומיומית.</p></details></div>
+          <div class="faq-item"><details><summary>מה כלול במערכת הדוחות?</summary><p>דוחות ביצועים חודשיים ושנתיים, סטטיסטיקות על תיק הלקוחות, דוחות מסמכים וסטטוסים, וייצוא מסודר ל-PDF.</p></details></div>
+          <div class="faq-item"><details><summary>איך מתחילים?</summary><p>מורידים את גרסת הניסיון, בודקים שהיא יושבת נכון על תהליך העבודה שלך, ואם צריך — מדברים ישירות בוואטסאפ ומקבלים מענה מהיר.</p></details></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CTA ════════════════════════════════════ -->
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box reveal">
+          <div class="cta-grid">
+            <div>
+              <h2>אם המערכת שלך מקצועית — גם דף הנחיתה צריך להיראות ככה</h2>
+              <p>הגרסה הזאת בנויה כדי לייצר רושם נכון: אמין, בוגר, מסודר ומדויק יותר למותג שלך.</p>
+            </div>
+            <div class="cta-actions">
+              <a href="https://github.com/golombs-collab/mashkanti-releases/releases/latest/download/mashkanti-setup-1.0.0.exe" class="btn btn-gold">הורדת ניסיון חינמי</a>
+              <a href="https://wa.me/972548037092" class="btn btn-ghost-white">צור קשר ישיר</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>© 2026 משכנתי — שחר גולומב | כל הזכויות שמורות</footer>
+
+  <script>
+    /* Pricing toggle */
+    var PRICES = {
+      monthly:{ p1:{amount:'22',period:'/ חודש',saving:''}, p2:{amount:'30',period:'/ חודש',saving:''}, p3:{amount:'38',period:'/ חודש',saving:''} },
+      annual: { p1:{amount:'250',period:'/ שנה',saving:'חיסכון של ₪14 בשנה'}, p2:{amount:'340',period:'/ שנה',saving:'חיסכון של ₪20 בשנה'}, p3:{amount:'400',period:'/ שנה',saving:'חיסכון של ₪56 בשנה'} }
+    };
+    function switchBilling(a){
+      var m=a?'annual':'monthly', c=PRICES[m];
+      ['p1','p2','p3'].forEach(function(p){
+        document.getElementById(p+'-amount').textContent=c[p].amount;
+        document.getElementById(p+'-period').textContent=c[p].period;
+        document.getElementById(p+'-saving').textContent=c[p].saving;
+      });
+      document.getElementById('lbl-monthly').classList.toggle('active',!a);
+      document.getElementById('lbl-annual').classList.toggle('active',a);
+    }
+
+    /* Scroll-reveal for below-fold sections only */
+    (function(){
+      var io=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+      },{threshold:0.08, rootMargin:'0px 0px -30px 0px'});
+      document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+    })();
+  </script>
+</body>
+</html>
