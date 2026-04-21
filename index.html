@@ -160,7 +160,7 @@
       display: grid;
       grid-template-columns: 540px 1fr;
       gap: 64px;
-      align-items: center;
+      align-items: flex-start;
     }
 
     /* hero copy */
@@ -169,7 +169,7 @@
       padding: 7px 16px; border-radius: 999px;
       background: rgba(76,145,180,.15); border: 1px solid rgba(76,145,180,.3);
       color: var(--sky); font-size: .84rem; font-weight: 700;
-      margin-bottom: 24px; width: fit-content; letter-spacing: .03em;
+      margin-bottom: 24px; width: fit-content; letter-spacing: .03em; margin-inline: auto;
     }
     .eyebrow-dot {
       width: 7px; height: 7px; border-radius: 50%; background: var(--sky);
@@ -189,8 +189,9 @@
       letter-spacing: -.025em;
       color: #fff;
       margin: 0 0 4px;
+      text-align: center;
     }
-    h1 em { font-style: normal; color: var(--sky); }
+    h1 em { font-style: normal; color: #fff; }
 
     .hero-lead {
       margin: 20px 0 0; max-width: 52ch;
@@ -202,7 +203,7 @@
     .hero-stats {
       display: flex; gap: 28px; margin: 32px 0 0; align-items: stretch;
     }
-    .hero-stat { display: flex; flex-direction: column; gap: 4px; }
+    .hero-stat { display: flex; flex-direction: column; gap: 4px; align-items: center; text-align: center; }
     .hero-stat-num {
       font-family: var(--font-display); font-size: 2.1rem; font-weight: 900;
       line-height: 1; color: #fff;
@@ -589,7 +590,7 @@
       box-shadow:var(--shadow-xs); transition:box-shadow .24s,transform .24s;
     }
     .use-case:hover { box-shadow:var(--shadow-md); transform:translateY(-3px); }
-    .use-case-num  { font-family:var(--font-display); font-size:3rem; font-weight:900; color:rgba(76,145,180,.1); line-height:1; margin-bottom:10px; }
+    .use-case-num  { font-family:var(--font-display); font-size:3rem; font-weight:900; color:rgba(76,145,180,.35); line-height:1; margin-bottom:10px; }
     .use-case h3   { font-family:var(--font-display); margin:0 0 10px; font-size:1.1rem; font-weight:700; color:var(--ink); letter-spacing:-.015em; }
     .use-case p    { margin:0; color:var(--muted); font-size:.94rem; }
 
@@ -647,7 +648,7 @@
         </span>
       </a>
       <nav class="nav">
-        <a href="#benefits">למה משכנתי</a>
+        <a href="#benefits">למה מערכת ניהול המשכנתאות מבית משכנתי</a>
         <a href="#reports">מערכת דוחות</a>
         <a href="#pricing">מסלולים</a>
         <a href="#audience">למי זה מתאים</a>
@@ -667,11 +668,13 @@
 
           <!-- Copy -->
           <div>
-            <div class="eyebrow">
-              <span class="eyebrow-dot"></span>
-              נבנה עם יועצי משכנתאות עבור יועצי משכנתאות
-            </div>
             <h1>מערכת אחת שמסדרת לך את <em>כל</em> העבודה</h1>
+            <div style="text-align:center; margin: 12px 0 24px;">
+              <div class="eyebrow" style="display:inline-flex;">
+                <span class="eyebrow-dot"></span>
+                נבנה עם יועצי משכנתאות עבור יועצי משכנתאות
+              </div>
+            </div>
             <p class="hero-lead">
               משכנתי מרכזת <strong>סימולציות משכנתה</strong>, <strong>ניהול לקוחות</strong> ו<strong>דוחות מקצועיים</strong>
               בממשק נקי, ברור ומכבד — כזה שמשדר מקצוענות גם לך וגם ללקוחות שלך.
@@ -679,13 +682,13 @@
 
             <div class="hero-stats">
               <div class="hero-stat">
-                <span class="hero-stat-num">30</span>
-                <span class="hero-stat-label">יום ניסיון חינמי</span>
+                <span class="hero-stat-num">21</span>
+                <span class="hero-stat-label">ימי ניסיון חינמי</span>
               </div>
               <div class="hero-stat-sep"></div>
               <div class="hero-stat">
                 <span class="hero-stat-num">₪22</span>
-                <span class="hero-stat-label">התחלה לחודש</span>
+                <span class="hero-stat-label">התחלה לחודש (במסלול הבסיסי)</span>
               </div>
               <div class="hero-stat-sep"></div>
               <div class="hero-stat">
@@ -734,8 +737,8 @@
             </div>
 
             <div class="hero-actions">
-              <a href="https://github.com/golombs-collab/mashkanti-releases/releases/latest/download/mashkanti-setup-1.0.0.exe" class="btn btn-gold">הורדת ניסיון חינמי ל-30 יום</a>
-              <a href="https://wa.me/972548037092" class="btn btn-ghost-white">לדבר איתי לפני ההורדה</a>
+              <a href="https://github.com/golombs-collab/mashkanti-releases/releases/latest/download/mashkanti-setup-1.0.0.exe" class="btn btn-gold">הורדת ניסיון חינמי ל-21 ימים</a>
+              <a href="https://wa.me/972548037092" class="btn btn-ghost-white">דברו איתנו בכל שאלה</a>
             </div>
             <div style="margin-top:14px;display:flex;align-items:flex-start;gap:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:10px;padding:10px 14px;max-width:480px;font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.55">
               <span style="font-size:1rem;flex-shrink:0;margin-top:1px">🛡️</span>
@@ -888,18 +891,18 @@
     <div class="marquee-strip">
       <div class="marquee-track">
         <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>נתונים נשמרים אצלך בלבד</div><div class="marquee-dot"></div>
-        <div class="marquee-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>30 יום ניסיון ללא כרטיס אשראי</div><div class="marquee-dot"></div>
+        <div class="marquee-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>21 ימי ניסיון ללא כרטיס אשראי</div><div class="marquee-dot"></div>
         <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>נבנה עם יועצי משכנתאות בפועל</div><div class="marquee-dot"></div>
         <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>ייצוא PDF מלוטש ללקוח</div><div class="marquee-dot"></div>
         <div class="marquee-item"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>עדכוני ריבית ומדד בזמן אמת</div><div class="marquee-dot"></div>
-        <div class="marquee-item"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>עובד לגמרי אופלין</div><div class="marquee-dot"></div>
+        <div class="marquee-item"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>עובד לגמרי ב-Offline</div><div class="marquee-dot"></div>
         <!-- duplicate -->
         <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>נתונים נשמרים אצלך בלבד</div><div class="marquee-dot"></div>
-        <div class="marquee-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>30 יום ניסיון ללא כרטיס אשראי</div><div class="marquee-dot"></div>
+        <div class="marquee-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>21 ימי ניסיון ללא כרטיס אשראי</div><div class="marquee-dot"></div>
         <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>נבנה עם יועצי משכנתאות בפועל</div><div class="marquee-dot"></div>
         <div class="marquee-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>ייצוא PDF מלוטש ללקוח</div><div class="marquee-dot"></div>
         <div class="marquee-item"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>עדכוני ריבית ומדד בזמן אמת</div><div class="marquee-dot"></div>
-        <div class="marquee-item"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>עובד לגמרי אופלין</div><div class="marquee-dot"></div>
+        <div class="marquee-item"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>עובד לגמרי ב-Offline</div><div class="marquee-dot"></div>
       </div>
     </div>
 
@@ -907,8 +910,8 @@
     <section id="benefits" class="benefits">
       <div class="container">
         <div class="section-head reveal">
-          <div class="section-kicker"><span class="kicker-dot"></span>למה משכנתי</div>
-          <h2>הכלים שבעל מקצוע צריך — בלי העומס שהוא לא</h2>
+          <div class="section-kicker"><span class="kicker-dot"></span>למה מערכת ניהול המשכנתאות מבית משכנתי</div>
+          <h2 style="white-space:nowrap; font-size:2.2rem;">הכלים שבעל מקצוע צריך — בלי העומס שהוא לא</h2>
           <p>משכנתי לא מנסה לעשות הכל. היא עושה את הדברים החשובים בצורה מדויקת, מהירה ומקצועית.</p>
         </div>
         <div class="benefits-grid">
@@ -939,7 +942,7 @@
           </div>
           <div class="benefit-card reveal reveal-d2">
             <div class="benefit-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-            <h3>עובד לגמרי אופלין</h3>
+            <h3>עובד לגמרי ב-Offline</h3>
             <p>המערכת יושבת על המחשב שלך. הנתונים נשמרים אצלך, עובדים בלי חיבור לאינטרנט, ואין תלות בשרתים חיצוניים.</p>
           </div>
         </div>
@@ -1081,7 +1084,7 @@
         <div class="section-head reveal">
           <div class="section-kicker"><span class="kicker-dot"></span>מסלולים ומחירים</div>
           <h2>מחיר שמתאים לסדר הגודל שלך</h2>
-          <p>שלושה מסלולים — מייעוץ בסיסי עד ניהול תיקים מלא. כולם מתחילים ב-30 יום ניסיון חינמי ללא כרטיס אשראי.</p>
+          <p>שלושה מסלולים — מייעוץ בסיסי עד ניהול תיקים מלא. כולם מתחילים ב-21 ימי ניסיון ללא כרטיס אשראי.</p>
         </div>
         <div class="billing-toggle-wrap reveal">
           <span id="lbl-monthly" class="active">חודשי</span>
@@ -1099,12 +1102,12 @@
               <div class="plan-name">ייעוץ וסימולציות</div>
               <div class="plan-desc">למי שרוצה לתת ייעוץ מדויק, להפיק סימולציות ברמה גבוהה ולהציג תשובות מקצועיות ללקוח.</div>
             </div>
-            <div class="trial-badge">30 יום ניסיון חינמי</div>
+            <div class="trial-badge">21 ימי ניסיון חינמי</div>
             <div class="plan-price"><span class="price-currency">₪</span><span class="price-amount" id="p1-amount">22</span><span class="price-period" id="p1-period">/ חודש</span></div>
             <div class="price-saving" id="p1-saving"></div>
             <ul class="features-list">
               <div class="section-label">מערכת ייעוץ וסימולציות</div>
-              <li><span class="check">✓</span><span>סימולטור משכנתה מלא (קרן שווה / שפיצר / פריים)</span></li>
+              <li><span class="check">✓</span><span>סימולטור משכנתה מלא (משכנתה רגילה, כדאיות מחזור, בלון, גרייס ומשכנתה הפוכה)</span></li>
               <li><span class="check">✓</span><span>השוואת מסלולי ריבית</span></li>
               <li><span class="check">✓</span><span>חישוב LTV, הכנסה נדרשת ועוד</span></li>
               <li><span class="check">✓</span><span>הצגת לוח סילוקין מפורט</span></li>
@@ -1119,7 +1122,7 @@
               <div class="plan-name">ייעוץ + ניהול לקוחות</div>
               <div class="plan-desc">למי שכבר עובד עם תיקים באופן שוטף ורוצה להחזיק תהליך מסודר, עקבי וקל לניהול.</div>
             </div>
-            <div class="trial-badge">30 יום ניסיון חינמי</div>
+            <div class="trial-badge">21 ימי ניסיון חינמי</div>
             <div class="plan-price"><span class="price-currency">₪</span><span class="price-amount" id="p2-amount">30</span><span class="price-period" id="p2-period">/ חודש</span></div>
             <div class="price-saving" id="p2-saving"></div>
             <ul class="features-list">
@@ -1140,7 +1143,7 @@
               <div class="plan-name">חבילה מלאה</div>
               <div class="plan-desc">למי שרוצה להחזיק גם את שכבת הבקרה והדיווח — ולהפוך את המערכת לבסיס העבודה השוטף.</div>
             </div>
-            <div class="trial-badge">30 יום ניסיון חינמי</div>
+            <div class="trial-badge">21 ימי ניסיון חינמי</div>
             <div class="plan-price"><span class="price-currency">₪</span><span class="price-amount" id="p3-amount">38</span><span class="price-period" id="p3-period">/ חודש</span></div>
             <div class="price-saving" id="p3-saving"></div>
             <ul class="features-list">
@@ -1165,13 +1168,13 @@
       <div class="container">
         <div class="section-head reveal">
           <div class="section-kicker"><span class="kicker-dot"></span>למי זה מתאים</div>
-          <h2>המוצר יושב טוב על בעלי מקצוע שרוצים להיראות מסודר יותר ולעבוד מהר יותר</h2>
-          <p>לא רק מה שיש במערכת — אלא מי מרוויח ממנה ואיך היא משתלבת ביום־יום.</p>
+          <h2>ליועצים שעבודה מסודרת היא לא רק יעילות<span style="white-space:nowrap"> אלא חלק מהמותג האישי שלהם</span></h2>
+          <p>המערכת לא מחליפה את השיפוט שלך — היא נותנת לו מסגרת שמכבדת אותו.</p>
         </div>
         <div class="use-cases-grid">
-          <article class="use-case reveal"><div class="use-case-num">01</div><h3>יועצי משכנתאות עצמאיים</h3><p>אם אתה רוצה להחליף שילוב של אקסלים, מסמכים ידניים ותזכורות מפוזרות — זה המקום שבו העבודה מתחילה להתכנס.</p></article>
-          <article class="use-case reveal reveal-d1"><div class="use-case-num">02</div><h3>מי שעובד עם מיחזורים ותיקים מורכבים</h3><p>ככל שיש יותר פרטים, מסמכים ובדיקות בדרך, כך הערך של מערכת מסודרת גדל משמעותית.</p></article>
-          <article class="use-case reveal reveal-d2"><div class="use-case-num">03</div><h3>בעלי מקצוע שרוצים להיראות פרימיום</h3><p>המסר כאן הוא לא רק "יש לי מערכת", אלא "יש לי תהליך מסודר, מקצועי ומכבד מול הלקוח".</p></article>
+          <article class="use-case reveal"><div class="use-case-num">01</div><h3>יועצים שרוצים חישוב מדויק ואמין</h3><p>סימולציות משכנתה מפורטות — לוח סילוקין, השוואת מסלולים וחישובי החזר — בממשק אחד, בלי שגיאות אקסל.</p></article>
+          <article class="use-case reveal reveal-d1"><div class="use-case-num">02</div><h3>יועצים שרוצים לייצא מסמך מקצועי ללקוח</h3><p>בסיום הפגישה — PDF מסודר ומכבד שהלקוח מקבל, חותם על הרושם שנוצר.</p></article>
+          <article class="use-case reveal reveal-d2"><div class="use-case-num">03</div><h3>יועצים שרוצים להגדיל את מספר התיקים שלהם</h3><p>פחות זמן על ניהול — יותר זמן על לקוחות חדשים.</p></article>
         </div>
       </div>
     </section>
@@ -1181,14 +1184,14 @@
       <div class="container">
         <div class="section-head reveal">
           <div class="section-kicker"><span class="kicker-dot"></span>שאלות נפוצות</div>
-          <h2>כל מה שסביר שישאלו אותך לפני הורדה או רכישה</h2>
+          <h2>שאלות נפוצות</h2>
         </div>
         <div class="faq-shell reveal">
-          <div class="faq-item"><details><summary>מה כולל הניסיון החינמי של 30 יום?</summary><p>הניסיון החינמי נותן גישה מלאה לכל תכונות החבילה המלאה — ללא הגבלה וללא צורך בכרטיס אשראי. בתום 30 הימים ניתן לבחור את המסלול המתאים ולהמשיך מאותו מקום.</p></details></div>
+          <div class="faq-item"><details><summary>מה כולל הניסיון החינמי של 21 ימים?</summary><p>הניסיון החינמי נותן גישה מלאה לכל תכונות החבילה המלאה — ללא הגבלה וללא צורך בכרטיס אשראי. בתום 21 הימים ניתן לבחור את המסלול המתאים ולהמשיך מאותו מקום.</p></details></div>
           <div class="faq-item"><details><summary>מה ההבדל בין תשלום חודשי לשנתי?</summary><p>בתשלום שנתי משלמים מראש ומקבלים מחיר עדיף לעומת תשלום חודשי. זה מתאים במיוחד למי שכבר יודע שהמערכת הולכת להיות חלק מהעבודה הקבועה שלו.</p></details></div>
           <div class="faq-item"><details><summary>האם יש התחייבות לתקופה?</summary><p>במסלול חודשי אין התחייבות וניתן להפסיק בכל עת. במסלול שנתי נהנים מהנחה בתמורה לתשלום מראש לשנה מלאה.</p></details></div>
           <div class="faq-item"><details><summary>האם אפשר לשדרג מסלול בהמשך?</summary><p>כן. המעבר בין המסלולים פשוט וטבעי, כך שאפשר להתחיל במסלול בסיסי ולגדול רק כשהצורך האמיתי מגיע.</p></details></div>
-          <div class="faq-item"><details><summary>איפה נשמרים הנתונים שלי?</summary><p>כל הנתונים נשמרים מקומית על המחשב שלך בלבד. אין תלות בשרתי ענן לצורך העבודה היומיומית.</p></details></div>
+          <div class="faq-item"><details><summary>איפה נשמרים הנתונים שלי?</summary><p>כל הנתונים נשמרים מקומית על המחשב שלך בלבד. אין תלות בשרתי ענן לצורך העבודה היומיומית. לחברה אין גישה לנתונים המוזנים במערכת בשום שלב.</p></details></div>
           <div class="faq-item"><details><summary>מה כלול במערכת הדוחות?</summary><p>דוחות ביצועים חודשיים ושנתיים, סטטיסטיקות על תיק הלקוחות, דוחות מסמכים וסטטוסים, וייצוא מסודר ל-PDF.</p></details></div>
           <div class="faq-item"><details><summary>איך מתחילים?</summary><p>מורידים את גרסת הניסיון, בודקים שהיא יושבת נכון על תהליך העבודה שלך, ואם צריך — מדברים ישירות בוואטסאפ ומקבלים מענה מהיר.</p></details></div>
         </div>
@@ -1201,8 +1204,8 @@
         <div class="cta-box reveal">
           <div class="cta-grid">
             <div>
-              <h2>אם המערכת שלך מקצועית — גם דף הנחיתה צריך להיראות ככה</h2>
-              <p>הגרסה הזאת בנויה כדי לייצר רושם נכון: אמין, בוגר, מסודר ומדויק יותר למותג שלך.</p>
+              <h2>מוכן לשדרג את תהליך העבודה שלך?</h2>
+              <p>21 ימי ניסיון חינמי — ללא כרטיס אשראי, ללא התחייבות.</p>
             </div>
             <div class="cta-actions">
               <a href="https://github.com/golombs-collab/mashkanti-releases/releases/latest/download/mashkanti-setup-1.0.0.exe" class="btn btn-gold">הורדת ניסיון חינמי</a>
@@ -1219,7 +1222,7 @@
 
   </main>
 
-  <footer>© 2026 משכנתי — שחר גולומב | כל הזכויות שמורות</footer>
+  <footer>© 2026 משכנתי — שחר גולומב | כל הזכויות שמורות &nbsp;·&nbsp; <a href="/privacy-policy.html" style="color:var(--muted);text-decoration:underline">מדיניות פרטיות</a></footer>
 
   <script>
     /* Pricing toggle */
